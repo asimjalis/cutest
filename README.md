@@ -1,4 +1,5 @@
-HOW TO USE
+How To Use
+----------
 
 You can use CuTest to create unit tests to drive your development
 in the style of Extreme Programming. You can also add unit tests to
@@ -9,12 +10,14 @@ code and add new features confidently without worrying about
 accidentally breaking earlier features.
 
 
-LICENSING
+Licensing
+---------
 
 For details on licensing see license.txt.
 
 
-GETTING STARTED
+Getting Started
+---------------
 
 To add unit testing to your C code the only files you need are
 CuTest.c and CuTest.h. 
@@ -36,12 +39,18 @@ Windows with the cl.exe compiler you would type:
     cl.exe AllTests.c CuTest.c CuTestTest.c
     AllTests.exe
 
+On Unix you should type:
+
+    gcc AllTests.c CuTest.c CuTestTest.c
+    ./a.out
+
 This will run all the unit tests associated with CuTest and print
 the output on the console. You can replace cl.exe with gcc or
 your favorite compiler in the command above.
 
 
-DETAILED EXAMPLE
+Detailed Example
+----------------
 
 Here is a more detailed example. We will work through a simple
 test first exercise. The goal is to create a library of string
@@ -101,7 +110,7 @@ to compile. You can replace gcc with your favorite compiler.
 CuTest should be portable enough to handle all Windows and Unix
 compilers. Then to run the tests type:
 
-    a.out
+    ./a.out
 
 This will print an error because we haven't implemented the
 StrToUpper function correctly. We are just returning the string
@@ -123,15 +132,16 @@ Recompile and run the tests again. The test should pass this
 time.
 
 
-WHAT TO DO NEXT
+What To Do Next
+---------------
 
 At this point you might want to write more tests for the
 StrToUpper function. Here are some ideas:
 
-TestStrToUpper_EmptyString :  pass in ""
-TestStrToUpper_UpperCase   :  pass in "HELLO WORLD"
-TestStrToUpper_MixedCase   :  pass in "HELLO world"
-TestStrToUpper_Numbers     :  pass in "1234 hello"
+    TestStrToUpper_EmptyString /* pass in ""            */
+    TestStrToUpper_UpperCase   /* pass in "HELLO WORLD" */
+    TestStrToUpper_MixedCase   /* pass in "HELLO world" */
+    TestStrToUpper_Numbers     /* pass in "1234 hello"  */
 
 As you write each one of these tests add it to StrUtilGetSuite
 function. If you don't the tests won't be run. Later as you write
@@ -147,7 +157,8 @@ And add FunkyStuffGetSuite to AllTests.c.
 The framework is designed in the way it is so that it is easy to
 organize a lot of tests.
 
-THE BIG PICTURE
+The Big Picture
+---------------
 
 Each individual test corresponds to a CuTest. These are grouped
 to form a CuSuite. CuSuites can hold CuTests or other CuSuites.
@@ -176,12 +187,12 @@ environment.
 
 CuTest offers a rich set of CuAssert functions. Here is a list:
 
-void CuAssert(CuTest* tc, char* message, int condition);
-void CuAssertTrue(CuTest* tc, int condition);
-void CuAssertStrEquals(CuTest* tc, char* expected, char* actual);
-void CuAssertIntEquals(CuTest* tc, int expected, int actual);
-void CuAssertPtrEquals(CuTest* tc, void* expected, void* actual);
-void CuAssertPtrNotNull(CuTest* tc, void* pointer);
+    void CuAssert(CuTest* tc, char* message, int condition);
+    void CuAssertTrue(CuTest* tc, int condition);
+    void CuAssertStrEquals(CuTest* tc, char* expected, char* actual);
+    void CuAssertIntEquals(CuTest* tc, int expected, int actual);
+    void CuAssertPtrEquals(CuTest* tc, void* expected, void* actual);
+    void CuAssertPtrNotNull(CuTest* tc, void* pointer);
 
 The project is open source and so you can add other more powerful
 asserts to make your tests easier to write and more concise.
@@ -189,10 +200,11 @@ Please feel free to send me changes you make so that I can
 incorporate them into future releases.
 
 If you see any errors in this document please contact me at
-asimjalis@peakprogramming.com.
+asimjalis@gmail.com.
 
 
-AUTOMATING TEST SUITE GENERATION
+Automating Test Suite Generation
+--------------------------------
 
 make-tests.sh will grep through all the .c files in the current
 directory and generate the code to run all the tests contained in
@@ -200,7 +212,8 @@ them. Using this script you don't have to worry about writing
 AllTests.c or dealing with any of the other suite code.
 
 
-CREDITS
+Credits
+-------
 
 [02.23.2003] Dave Glowacki <dglo@hyde.ssec.wisc.edu> has added
 (1) file name and line numbers to the error messages, (2)
