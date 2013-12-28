@@ -117,6 +117,9 @@ void CuTestInit(CuTest* t, const char* name, TestFunction function)
 	t->message = NULL;
 	t->function = function;
 	t->jumpBuf = NULL;
+    t->setup = NULL;
+    t->teardown = NULL;
+    t->testBaton = NULL;
 }
 
 CuTest* CuTestNew(const char* name, TestFunction function)
@@ -137,11 +140,15 @@ void CuTestRun(CuTest* tc)
 {
 	jmp_buf buf;
 	tc->jumpBuf = &buf;
+    if (tc->setup)
+        tc->testBaton = tc->setup(tc);
 	if (setjmp(buf) == 0)
 	{
 		tc->ran = 1;
 		(tc->function)(tc);
 	}
+    if (tc->teardown)
+        tc->teardown(tc->testBaton);
 	tc->jumpBuf = 0;
 }
 
@@ -267,7 +274,9 @@ void CuSuiteInit(CuSuite* testSuite)
 {
 	testSuite->count = 0;
 	testSuite->failCount = 0;
-        memset(testSuite->list, 0, sizeof(testSuite->list));
+    testSuite->setup = NULL;
+    testSuite->teardown = NULL;
+    memset(testSuite->list, 0, sizeof(testSuite->list));
 }
 
 CuSuite* CuSuiteNew(void)
@@ -296,6 +305,13 @@ void CuSuiteAdd(CuSuite* testSuite, CuTest *testCase)
 	assert(testSuite->count < MAX_TEST_CASES);
 	testSuite->list[testSuite->count] = testCase;
 	testSuite->count++;
+
+    /* CuSuiteAdd is called twice per test, don't reset the callbacks if
+       already set. */
+    if (!testCase->setup)
+        testCase->setup = testSuite->setup;
+    if (!testCase->teardown)
+        testCase->teardown = testSuite->teardown;
 }
 
 void CuSuiteAddSuite(CuSuite* testSuite, CuSuite* testSuite2)
@@ -364,4 +380,11 @@ void CuSuiteDetails(CuSuite* testSuite, CuString* details)
 		CuStringAppendFormat(details, "Passes: %d ", testSuite->count - testSuite->failCount);
 		CuStringAppendFormat(details, "Fails: %d\n",  testSuite->failCount);
 	}
+}
+
+void CuSuiteSetSetupTeardownCallbacks(CuSuite* testSuite, TestCallback setup,
+                                      TestCallback teardown)
+{
+    testSuite->setup = setup;
+    testSuite->teardown = teardown;
 }

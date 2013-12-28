@@ -41,6 +41,7 @@ void CuStringDelete(CuString* str);
 typedef struct CuTest CuTest;
 
 typedef void (*TestFunction)(CuTest *);
+typedef void *(*TestCallback)(void *baton);
 
 struct CuTest
 {
@@ -50,6 +51,9 @@ struct CuTest
 	int ran;
 	const char* message;
 	jmp_buf *jumpBuf;
+    TestCallback setup;
+    TestCallback teardown;
+    void *testBaton;
 };
 
 void CuTestInit(CuTest* t, const char* name, TestFunction function);
@@ -107,7 +111,9 @@ typedef struct
 	int count;
 	CuTest* list[MAX_TEST_CASES];
 	int failCount;
-
+    TestCallback setup;
+    TestCallback teardown;
+    void *testBaton;
 } CuSuite;
 
 
@@ -119,5 +125,7 @@ void CuSuiteAddSuite(CuSuite* testSuite, CuSuite* testSuite2);
 void CuSuiteRun(CuSuite* testSuite);
 void CuSuiteSummary(CuSuite* testSuite, CuString* summary);
 void CuSuiteDetails(CuSuite* testSuite, CuString* details);
+void CuSuiteSetSetupTeardownCallbacks(CuSuite* testSuite, TestCallback setup,
+                                      TestCallback teardown);
 
 #endif /* CU_TEST_H */
