@@ -9,6 +9,7 @@
 /* Customizations in this version of CuTest:
  * 1. added CuAssertStrnEquals(), CuAssertStrnEquals_Msg() and
  *    CuAssertStrnEquals_LineMsg()
+ * 2. Add CuSuiteSetSetupTeardownCallbacks
  */
 char* CuStrAlloc(int size);
 char* CuStrCopy(const char* old);
