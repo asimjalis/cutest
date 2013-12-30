@@ -10,7 +10,9 @@
  * 1. added CuAssertStrnEquals(), CuAssertStrnEquals_Msg() and
  *    CuAssertStrnEquals_LineMsg()
  * 2. Add CuSuiteSetSetupTeardownCallbacks
+ * 3. Make CuAssertPtrEquals_LineMsg take const pointers.
  */
+
 char* CuStrAlloc(int size);
 char* CuStrCopy(const char* old);
 
