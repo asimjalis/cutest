@@ -177,13 +177,13 @@ void CuAssert_Line(CuTest* tc, const char* file, int line, const char* message, 
 	CuFail_Line(tc, file, line, NULL, message);
 }
 
-void CuAssertStrEquals_LineMsg(CuTest* tc, const char* file, int line, const char* message, 
-	const char* expected, const char* actual)
+void CuAssertStrnEquals_LineMsg(CuTest* tc, const char* file, int line, const char* message, 
+	const char* expected, size_t explen, const char* actual)
 {
 	CuString string;
 	if ((expected == NULL && actual == NULL) ||
 	    (expected != NULL && actual != NULL &&
-	     strcmp(expected, actual) == 0))
+	     strncmp(expected, actual, explen) == 0))
 	{
 		return;
 	}
@@ -200,6 +200,12 @@ void CuAssertStrEquals_LineMsg(CuTest* tc, const char* file, int line, const cha
 	CuStringAppend(&string, actual);
 	CuStringAppend(&string, ">");
 	CuFailInternal(tc, file, line, &string);
+}
+
+void CuAssertStrEquals_LineMsg(CuTest* tc, const char* file, int line, const char* message, 
+	const char* expected, const char* actual)
+{
+	CuAssertStrnEquals_LineMsg(tc, file, line, message, expected, -1, actual);
 }
 
 void CuAssertIntEquals_LineMsg(CuTest* tc, const char* file, int line, const char* message, 

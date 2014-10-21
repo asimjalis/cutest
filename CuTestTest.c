@@ -609,6 +609,39 @@ void TestAssertStrEquals_FailStrNULL(CuTest* tc)
 	CompareAsserts(tc, "CuAssertStrEquals_FailStrNULL failed", expectedMsg, tc2->message);
 }
 
+void TestAssertStrnEquals(CuTest *tc)
+{
+	jmp_buf buf;
+	CuTest *tc2 = CuTestNew("TestAssertStrnEquals", zTestFails);
+
+	const char* expected = "expected <hello> but was <world>";
+	const char *expectedMsg = "some text: expected <hello> but was <world>";
+
+	tc2->jumpBuf = &buf;
+	if (setjmp(buf) == 0)
+	{
+		CuAssertStrnEquals(tc2, "hello", 0, "world");
+	}
+	CuAssertTrue(tc, !tc2->failed);
+	if (setjmp(buf) == 0)
+	{
+		CuAssertStrnEquals_Msg(tc2, "some text", "hello", 0, "world");
+	}
+	CuAssertTrue(tc, !tc2->failed);
+	if (setjmp(buf) == 0)
+	{
+		CuAssertStrnEquals(tc2, "hello", 5, "world");
+	}
+	CuAssertTrue(tc, tc2->failed);
+	CompareAsserts(tc, "CuAssertStrEquals failed", expected, tc2->message);
+	if (setjmp(buf) == 0)
+	{
+		CuAssertStrnEquals_Msg(tc2, "some text", "hello", 5, "world");
+	}
+	CuAssertTrue(tc, tc2->failed);
+	CompareAsserts(tc, "CuAssertStrEquals failed", expectedMsg, tc2->message);
+}
+
 void TestAssertIntEquals(CuTest* tc)
 {
 	jmp_buf buf;
