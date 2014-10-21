@@ -6,17 +6,19 @@
 # Author: Asim Jalis
 # Date: 01/08/2003
 
+mydir=`dirname "$0"`
+
 if test $# -eq 0 ; then FILES=*.c ; else FILES=$* ; fi
 
-echo '
+echo "
 
 /* This is auto-generated code. Edit at your own peril. */
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "CuTest.h"
+#include \"$mydir/CuTest.h\"
 
-'
+"
 
 cat $FILES | grep '^void Test' | 
     sed -e 's/(.*$//' \
@@ -26,7 +28,7 @@ cat $FILES | grep '^void Test' |
 echo \
 '
 
-void RunAllTests(void) 
+void RunAllTests(void)
 {
     CuString *output = CuStringNew();
     CuSuite* suite = CuSuiteNew();
@@ -51,5 +53,6 @@ echo \
 int main(void)
 {
     RunAllTests();
+    return 0;
 }
 '
