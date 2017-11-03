@@ -231,6 +231,14 @@ void CuAssertPtrEquals_LineMsg(CuTest* tc, const char* file, int line, const cha
 	CuFail_Line(tc, file, line, message, buf);
 }
 
+void CuAssertPtrEqualsNull_LineMsg(CuTest* tc, const char* file, int line, const char* message, 
+	void* actual)
+{
+	char buf[STRING_MAX];
+	if (expected == NULL) return;
+	sprintf(buf, "expected NULL pointer but was <0x%p>", actual);
+	CuFail_Line(tc, file, line, message, buf);
+}
 
 /*-------------------------------------------------------------------------*
  * CuSuite
