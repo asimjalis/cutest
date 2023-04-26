@@ -1,6 +1,8 @@
 How To Use
 ----------
 
+Minimalist powerful C unit testing framework.
+
 You can use CuTest to create unit tests to drive your development
 in the style of Extreme Programming. You can also add unit tests to
 existing code to ensure that it works as you suspect.
