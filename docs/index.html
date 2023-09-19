@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<!-- saved from url=(0030)http://cutest.sourceforge.net/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html;
+charset=windows-1252"><link href="./style.css" rel="stylesheet" type="text/css">
+
+
+<title>CuTest: The Cutest C Unit Testing Framework</title>
+</head>
+
+<body>
+
+<script type="text/javascript"><!--
+google_ad_client = "pub-6301376840682363";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_channel ="3703387138";
+google_color_border = "CCCCCC";
+google_color_bg = "FFFFFF";
+google_color_link = "000000";
+google_color_url = "666666";
+google_color_text = "333333";
+//--></script>
+<br>
+<br>
+<hr>
+<font size="-1">
+[ 
+  <a href="https://github.com/asimjalis/cutest/releases">Download Now</a>
+| <a href="https://github.com/asimjalis/cutest">Browse Source</a>
+| <a href="https://github.com/asimjalis/cutest/wiki">Wiki</a>
+| <a href="http://asimjalis.blogspot.com/">Blog</a>
+| <a href="mailto:asimjalis(nospam)gmail.com">asimjalis(nospam)gmail.com</a>
+]
+</font>
+<hr>
+
+
+<h1>CuTest: C Unit Testing Framework</h1>
+
+
+<h2>Overview</h2>
+
+CuTest is a unit testing library for the C language. It can be
+used to do Extreme Programming and Test-First Development in the
+C language. It's a fun and cute library that will make your
+programming fun and productive.
+
+<h2>Benefits</h2>
+
+<ul>
+
+<li> Lower Defects. The tests ensure that your code keeps working
+as you make small changes in it.  
+
+</li><li> Faster Debugging. The tests tell you which subroutine is
+broken.  You avoid spending hours trying to figure out what's
+broken.
+
+</li><li> Development Speed. You trust your old code and can keep
+adding to it without worrying about bad interactions. If there is
+a bad interaction the tests will catch it.
+
+</li><li> Permanent Bug Fixes. If every time a bug is reported you
+write a quick test, you will guarantee that the bug never
+reappears again.
+
+</li><li> Fun. As your bug count drops you will begin to enjoy
+programming like you've never done before. Running the tests
+every few minutes and seeing them pass feels good.
+
+</li></ul>
+
+<h2> Features </h2>
+
+<ul>
+
+<li> Small. Consists of a single .c and .h file.
+
+</li><li> Easy to Deploy. Just drop the two files into your source
+tree.
+
+</li><li> Highly Portable. Works with all major compilers on Windows
+(Microsoft, Borland), Linux, Unix, PalmOS. 
+
+</li><li> Open Source. You can extend it to add more functionality.
+The source can be invaluable if you are trying to trace a test
+failure.
+
+</li><li> Cuteness. Of all the testing frameworks CuTest has the
+cutest name :-)
+
+</li></ul>
+
+
+<h2>Licensing</h2>
+
+CuTest is distributed under the <a href="https://opensource.org/licenses/zlib-license.html">zlib/libpng
+license</a>. See license.txt in the distribution for text of license.  The
+intent of the license is to: 
+
+<ul>
+
+<li> Keep the license as simple as possible
+</li><li> Encourage the use of CuTest in both free and commercial applications and libraries
+</li><li> Keep the source code together 
+</li><li> Give credit to the CuTest contributors for their work
+
+</li></ul>
+
+If you find CuTest useful we would like to hear about it. 
+
+
+<h2>Getting Started</h2>
+
+<p> For a detailed tutorial see README in the distribution.  This shows you how
+to organize your tests and how to autogenerate the AllTests.c file from your
+source files.
+
+</p><p> To add unit testing to your C code the only files you need
+are CuTest.c and CuTest.h. 
+
+</p><p> CuTestTest.c and AllTests.c have been included to provide an
+example of how to write unit tests and then how to aggregate them
+into suites and into a single AllTests.c file. Suites allow you
+to put unit tests for different parts of your code in different
+files. AllTests.c combines all the suites and runs them. 
+
+</p><p> You should not have to look inside CuTest.c.  Looking in
+CuTestTest.c (for example usage) should be sufficient.
+  
+</p><p> After downloading the sources, run your compiler to create an
+executable called AllTests.exe. For example, if you are using
+Windows you would type:
+
+</p><pre class="CONSOLE">cl AllTests.c CuTest.c CuTestTest.c
+AllTests.exe
+</pre>
+
+<p> This will run all the unit tests associated with CuTest and
+print the output on the console.
+
+</p><p> For more details on how to use the library look at the README file included
+with the distribution. 
+
+</p><h2>Contribute</h2>
+
+<p> We hope you CuTest saves you time and helps you produce high quality
+software.
+
+</p><p> If you find CuTest useful, let us know. Tell us what platform you are using
+it on (Windows, Linux, etc), and what kinds of applications you are using it
+with.
+
+</p><p> If you would like to contribute documentation or tutorials to this project
+please send e-mail. 
+
+<br>
+<br>
+
+</p><hr>
+<font size="-1">
+Copyright © 2002-2003, Asim Jalis (<a href="mailto:asimjalis(nospam)gmail.com">asimjalis(nospam)gmail.com</a>).
+All rights reserved.
+</font>
+
+<script language="JavaScript">
+<!--
+   var re = /\(nospam\)/ig;
+   var str;
+
+   for(i = 0;i < document.links.length;i++) 
+   {
+      str = "" + document.links(i).href;
+      if(str.search(re) != -1)
+         document.links(i).href = str.replace(re, "@");
+
+      str = "" + document.links(i).innerHTML;
+      if(str.search(re) != -1)
+         document.links(i).innerHTML = str.replace(re, "@");
+   }
+-->
+</script>
+
+<p>
+<a href="https://github.com/"><img src="./github-logo.png" border="0" alt="GitHub Logo"></a>
+
+
+
+</p></body></html>
